@@ -26,6 +26,11 @@ SECRET_KEY = '8-(ge5tspz$=h%on+n@y&(ea-)+u6v7u9il@@!2jai(#rf0lf@'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'rief.rn@gmail.com'
+EMAIL_HOST_PASSWORD = 'rIEfrn93'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
 
 
 # Application definition
@@ -37,6 +42,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'dashboard',
+    'crispy_forms',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'booking',
+    'contact',
+    'stripe',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +69,7 @@ ROOT_URLCONF = 'testskill.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,6 +82,14 @@ TEMPLATES = [
     },
 ]
 
+#For allauth:
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
 WSGI_APPLICATION = 'testskill.wsgi.application'
 
 
@@ -74,9 +97,13 @@ WSGI_APPLICATION = 'testskill.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+   'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':'testskill',
+        'USER': 'root',
+        'PASSWORD':'',
+        'HOST':'localhost',
+        'PORT':'3306',
     }
 }
 
@@ -105,7 +132,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Jakarta'
 
 USE_I18N = True
 
@@ -118,3 +145,49 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATICFILES_DIRS = [
+# os.path.join(BASE_DIR, 'static'),
+# ]
+if DEBUG:
+    MEDIA_URL = '/media/'
+    STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),"static","static-only")
+    MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),"static","media")
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static'),
+    ]
+
+#template packs of crispy-forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+#for allauth:
+SITE_ID = 1
+
+#Configuration settings for allauth---------------------------------------------
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/' #The url(here HOME) where the user is redirected after logging in.
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email' #implies both username ans email are valid for login.
+ACCOUNT_CONFIRM_EMAIL_ON_GET =False #email verified or not is not checked when he logs/logged in.
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = LOGIN_URL #Anonymous user to be redirected fromm emailverification link.
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL =None #Redirect signed in uers to home page.
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
+ACCOUNT_EMAIL_REQUIRED =False #Email not required for signup.
+ACCOUNT_EMAIL_VERIFICATION = "optional"
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "concert" #default email subject on the verification link email.
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"
+
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True #when user confirms email,he's automat" logged in.
+ACCOUNT_LOGOUT_ON_GET = False #Pompt for asking "ARE you sure to Logout."
+ACCOUNT_LOGOUT_REDIRECT_URL ="/" #Where the user is redirected after logging out.
+
+ACCOUNT_SIGNUP_FORM_CLASS =None #Custom field for authentication.
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE =False
+ACCOUNT_UNIQUE_EMAIL = True #No 2 accounts can have same email.
+
+ACCOUNT_USER_MODEL_EMAIL_FIELD ="email" #"email" is default, if not: we need custom user model for field where the user inputs his email.
+ACCOUNT_USER_MODEL_USERNAME_FIELD ="username"
+
+ACCOUNT_USERNAME_MIN_LENGTH = 6
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_PASSWORD_INPUT_RENDER_VALUE =False #password not shown when typed.
+ACCOUNT_PASSWORD_MIN_LENGTH = 6
