@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'rief.rn@gmail.com'
-EMAIL_HOST_PASSWORD = 'rIEfrn93'
+EMAIL_HOST_PASSWORD = '******'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
 
