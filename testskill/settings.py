@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'rief.rn@gmail.com'
-EMAIL_HOST_PASSWORD = '******'
+EMAIL_HOST_PASSWORD = 'rIEfrn93'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
 
@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'contact',
     'stripe',
     'rest_framework',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -191,3 +192,6 @@ ACCOUNT_USERNAME_MIN_LENGTH = 6
 ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_PASSWORD_INPUT_RENDER_VALUE =False #password not shown when typed.
 ACCOUNT_PASSWORD_MIN_LENGTH = 6
+
+STRIPE_PUBLISHABLE_KEY='pk_test_auKfFOhje6uC1r76ESSPYRBC00UOkbIpt1'
+STRIPE_SECRET_KEY ='sk_test_QJHm7aeznVEt7B2nnRlmafp300K5SNimll'

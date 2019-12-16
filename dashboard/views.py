@@ -6,6 +6,12 @@ from django.shortcuts import render
 def home (request):
 	context={}
 	return render (request,'home.html',context)
+	
+def about(request):
+	"""about page"""
+	context = {}
+	template = 'about.html'
+	return render(request,template,context)
 
 @login_required
 def dashboard(request):

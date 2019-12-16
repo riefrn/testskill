@@ -2,7 +2,7 @@
 {% block title %}
   Concert | Home 
 {% endblock %}
-{% block contents %}
+{% block content %}
     <div class="jumbotron">
       <div class="text-center">
         <h2>Didi Kempot Concert</h2>
@@ -17,7 +17,7 @@
               <p>{{singer.address}}</p>
               <p>{{singer.date}} | {{singer.time}} </p>
               <p><a class="btn btn-default" onclick="watchTrailer('{{ singer.name }}','{{ singer.trailer }}')" role="button">Watch Performance</a> 
-                <a class="btn btn-primary" href="#" role="button">Buy Ticket Now</a></p>
+                <a class="btn btn-primary" href="{% url 'concert_list' singer.id %}" role="button">Buy Ticket Now</a></p>
             </div>
           </div>
         </div>

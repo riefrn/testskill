@@ -32,6 +32,9 @@ class Booking(models.Model):
 	payment_type = models.CharField(max_length=11, choices=payment_choice, default='Credit Card')
 	paid_amount =  models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
 	paid_by	= models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.DO_NOTHING, null=True, blank=True)
+	
+	def __str__(self):
+		return str(self.id)
 
 class Seat (models.Model):
 	seat_choice = (
@@ -47,7 +50,7 @@ class Seat (models.Model):
 		unique_together = ('no', 'show')
 
 	def __str__(self):
-		return self.no +str(self.show)
+		return self.no + str(self.show)
 
 class BookedSeat(models.Model):
 	seat = models.ForeignKey(Seat, on_delete=models.CASCADE)
