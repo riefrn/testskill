@@ -18,7 +18,7 @@
 			Showtime:<input id="showtime" name="showtime" value="{{ concert.time }}"  readonly>
 			Seats:<input id="selected_seat" name="selected_seat" value="{{ seats }}"  readonly>
 			Seat Type:<input id="seat_type" name="seat_type" value="{{ seat_type }}"  readonly>
-			Payable Amount:<input id="amount" name="amount" value="{{ ticket_price }}"  readonly>
+			Payable Amount IDR :<input id="amount" name="amount" value="{{ ticket_price }}"  readonly>
 			{{ form|crispy }}
 			<button type="submit">Pay</button>
 		</form>

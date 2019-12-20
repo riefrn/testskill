@@ -7,7 +7,7 @@ class SeatForm(forms.ModelForm):
 		fields = ('seat_type',)
 
 class SelectedSeatForm(forms.Form):
-	selected_seat = forms.CharField(required=True, max_length=10, help_text='Seat No seperated by ,')
+	selected_seat = forms.CharField(required=True, label='Number of Ticket', max_length=10, help_text='Maximum 1 Ticket')
 
 class BookingForm (forms.ModelForm):
 	class Meta:

@@ -45,7 +45,7 @@ def payment_gateway(request):
 			except:
                 #redirect to seatnotfound.html
 				return redirect('booking/seatnotfound.html')
-
+				
 			if Seat.objects.filter(seat_type=seat_type, no=each, show=concert):
 				s = Seat(no=each, seat_type=seat_type, show=concert)
 				book_seat.append(s)

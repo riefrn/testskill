@@ -19,7 +19,7 @@ def checkout(request):
 
 			charge = stripe.Charge.create(
 				amount=100000,
-				currency="usd",
+				currency="IDR",
 				description = "Example charge",
 				customer = customer_id,
 				)

@@ -10,8 +10,10 @@ from dashboard import views as dash_views
 from booking import views as booking_views
 from contact import views as cont_views
 from checkout import views as check_views
+from users import views as users_views
 router = routers.DefaultRouter()
-router.register(r'concerts',booking_views.ConcertSet, base_name="booking_concert")
+router.register(r'concerts',booking_views.ConcertSet, base_name="booking_concert"),
+router.register(r'users',users_views.UserListView, base_name="users_api"),
 
 urlpatterns = [
     path('admin/', admin.site.urls),

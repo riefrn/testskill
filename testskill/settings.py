@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'stripe',
     'rest_framework',
     'checkout',
+    'users',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -100,7 +102,7 @@ WSGI_APPLICATION = 'testskill.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'testskill',
+        'NAME':'didikempot',
         'USER': 'root',
         'PASSWORD':'',
         'HOST':'localhost',
@@ -195,3 +197,15 @@ ACCOUNT_PASSWORD_MIN_LENGTH = 6
 
 STRIPE_PUBLISHABLE_KEY='pk_test_auKfFOhje6uC1r76ESSPYRBC00UOkbIpt1'
 STRIPE_SECRET_KEY ='sk_test_QJHm7aeznVEt7B2nnRlmafp300K5SNimll'
+
+AUTH_USER_MODEL = "users.CustomUser" 
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
